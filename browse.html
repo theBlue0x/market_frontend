@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link rel="stylesheet"href="https://fonts.googleapis.com/css2?family=Baloo+Paaji+2&family=Poppins:wght@100;500&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined">
+    <meta charset="UTF-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="description" content="Blue0x Marketplace">
+     <link rel="shortcut icon" href="./img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Blue0x Marketplace</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="navbar-container">
+        <div class="navbar-nav-left">
+          <div class="navbar-brand">
+            <img src="img/blue0x.png" alt="Blue0x logo" />
+            <a href="index.html"><p class="logo">Blue0x<span> Market</span></p></a>
+          </div>
+        </div>
+
+        <div class="navbar-nav-right">
+          <div class="navbar-search-bar">
+            <span class="material-icons md-24">search</span>
+            <input id="search" class="search-bar" type="text" placeholder=" Search items and accounts" />
+          </div>
+          <div class="navbar-items" id="menu">
+            <div class="navbar-search-bar-hidden menuItem">
+              <span class="material-icons md-24">search</span>
+              <input id="search1" class="search-bar" type="text" placeholder=" Search items and accounts"/>
+            </div>
+            <ul>
+              <li>
+                <a class="menuItem" href="categories.html">Browse</a>
+              </li>
+              <li>
+                <a class="menuItem" href="create.html">Sell</a>
+              </li>
+              <li>
+                <a class="menuItem" href="resources.html">Resources</a>
+              </li>
+              <li>
+                <a class="menuItem" href="faq.html">FAQ</a>
+              </li>
+              <li>
+                <a class="menuItem" href="profile.html"><span class="material-icons-outlined nav-icon">account_circle
+                </span><span class="profile">Profile</span></a>
+              </li>
+              <li>
+                <a class="menuItem" href="wallet_login.html"><span class="material-icons-outlined nav-icon">account_balance_wallet
+                </span><button class="wallet">View Wallet</button></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Hamburger Menu -->
+      <button type="button" class="hamburger">
+        <i class="menuIcon material-icons nav-icon" id="hamburger">menu</i>
+        <i class="closeIcon material-icons nav-icon" id="close">close</i>
+      </button>
+    </nav>
+    <section class="pages">
+      <div class="page-heading">
+        <h1 id="category"></h1>in 
+        <span id="city"></span>
+      </div>
+    </section>
+    <section class="browse-content" id="nft-section">
+    	<div class='nft-card-none' id="none"><h4>No items listed.</h4></div>
+    </section>
+
+    <footer class="margin-bottom"></footer>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="./scripts.js"></script>
+<script src="./constants.js"></script>
+<script>
+var imgDiv = ""
+const queryString = window.location.search
+const urlParams = new URLSearchParams(queryString)
+const category = urlParams.get('category')
+var c
+if (category ==  'View All Categories'){
+  c = 'All Categories'
+} else {
+  c = category
+}
+document.getElementById("category").innerText = 'Browsing ' + c
+const l = urlParams.get('location')
+var loc
+if (l == 'View All Cities') {
+  loc = 'All Cities'
+} else {
+loc = getCityName(l)
+}
+document.getElementById('city').innerText = loc
+$.getJSON(Constants.listGoodsAPI, function(data) {
+  console.log(data)
+    var imgDiv = ''
+    $.each(data, function(key, value) {
+      if (c == 'All Categories' && loc == 'All Cities') {
+        const item = key
+        const img = value.mainImg
+        const title = value.t
+        imgDiv += "<div class='nft-card'>"
+        imgDiv += "<a href=item.html?item=" + item + "><img src='" + img + "'>"
+        imgDiv += "<h4>" + title + "</h4></a>"
+        imgDiv += "</div>"
+        document.getElementById('nft-section').innerHTML = imgDiv
+       } else if (c == 'All Categories'  && value.l == l) {
+        const item = key
+        const img = value.mainImg
+        const title = value.t
+        imgDiv += "<div class='nft-card'>"
+        imgDiv += "<a href=item.html?item=" + item + "><img src='" + img + "'>"
+        imgDiv += "<h4>" + title + "</h4></a>"
+        imgDiv += "</div>"
+        document.getElementById('nft-section').innerHTML = imgDiv
+      } else if (loc == 'All Cities'  && value.c == c) {
+        const item = key
+        const img = value.mainImg
+        const title = value.t
+        imgDiv += "<div class='nft-card'>"
+        imgDiv += "<a href=item.html?item=" + item + "><img src='" + img + "'>"
+        imgDiv += "<h4>" + title + "</h4></a>"
+        imgDiv += "</div>"
+        document.getElementById('nft-section').innerHTML = imgDiv
+      } else if (value.c == c  && value.l == l) {
+        const item = key
+        const img = value.mainImg
+        const title = value.t
+        imgDiv += "<div class='nft-card'>"
+        imgDiv += "<a href=item.html?item=" + item + "><img src='" + img + "'>"
+        imgDiv += "<h4>" + title + "</h4></a>"
+        imgDiv += "</div>"
+        document.getElementById('nft-section').innerHTML = imgDiv
+      }
+      
+})})
+</script>
+</body>
+</html>
