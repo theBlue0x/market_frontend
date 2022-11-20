@@ -613,6 +613,7 @@ button.wallet {
   height: 350px;
   width: 350px;
   cursor: pointer;
+  object-fit: contain;
 }
 
 span.star {

@@ -57,21 +57,22 @@ var Constants = (function(Constants, $, undefined) {
   //Constants.supplyAPI = 'https://app.blue0x.com/supply' // Audit supply API
   //Constants.gasAPI = 'https://gasstation-mumbai.matic.today/v2' // Gas fee from Polygon Gas Station
 
-  Constants.uploadAPI = 'https://app.blue0x.com/upload'
-  Constants.profileAPI = 'https://app.blue0x.com/profile'
-  Constants.listAPI = 'https://app.blue0x.com/list'
-  Constants.delistAPI = 'https://app.blue0x.com/delist'
-  Constants.bidsAPI = 'https://app.blue0x.com/bids'
-  Constants.deleteBidAPI = 'https://app.blue0x.com/deleteBid'
-  Constants.cancelBidAPI = 'https://app.blue0x.com/cancelBid'
-  Constants.deleteCancelledBidAPI = 'https://app.blue0x.com/deleteCancelledBid'
-  Constants.listGoodsAPI = 'https://app.blue0x.com/listGoods'
-  Constants.goodsBidsAPI = 'https://app.blue0x.com/goodsBids'
-  Constants.goodsProfileAPI = 'https://app.blue0x.com/goodsProfile'
-  Constants.deleteGoodsAPI = 'https://app.blue0x.com/deleteGoods'
-  Constants.deleteGoodsBidsAPI = 'https://app.blue0x.com/deleteGoodsBids'
-  Constants.goodsCancelBidAPI = 'https://app.blue0x.com/cancelGoodsBid'
-  Constants.deleteGoodsCancelledBidAPI = 'https://app.blue0x.com/deleteGoodsCancelledBid'
+  Constants.uploadAPI = '/upload'
+  Constants.profileAPI = '/profile'
+  Constants.listAPI = '/list'
+  Constants.delistAPI = '/delist'
+  Constants.bidsAPI = '/bids'
+  Constants.deleteBidAPI = '/deleteBid'
+  Constants.cancelBidAPI = '/cancelBid'
+  Constants.deleteCancelledBidAPI = '/deleteCancelledBid'
+  Constants.listGoodsAPI = '/listGoods'
+  Constants.goodsBidsAPI = '/goodsBids'
+  Constants.goodsProfileAPI = '/goodsProfile'
+  Constants.deleteGoodsAPI = '/deleteGoods'
+  Constants.deleteGoodsBidsAPI = '/deleteGoodsBids'
+  Constants.goodsCancelBidAPI = '/cancelGoodsBid'
+  Constants.deleteGoodsCancelledBidAPI = '/deleteGoodsCancelledBid'
 
   return Constants;
+
 } (Constants || {}, jQuery));

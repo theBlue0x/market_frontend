@@ -186,7 +186,8 @@ function submitForm(e) {
         requestType: "broadcastTransaction",
         transactionBytes: signedBytes
       },
-      function(result1){ 
+      function(result1){
+        console.log(result1)
         const y = JSON.parse(result1)
         const error1 = y.errorDescription
         const transaction = y.transaction
@@ -207,7 +208,7 @@ function submitForm(e) {
           })})
         } else {
           document.getElementById("loading").style.display = "none"
-          document.getElementById('error').innerHTML = error
+          document.getElementById('error').innerHTML = error1
       }})
     } else {
       document.getElementById("loading").style.display = "none"

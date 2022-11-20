@@ -78,7 +78,8 @@
         <p><b>Item:</b> <span id="item"></span></p>
         <p><b>Seller:</b> <span id="seller"></span></p>
         <p><b>Location:</b> <span id="location"></span></p>
-        <p><b>Price:</b> <span id="price"></span> USDX</p>
+        <p><b>Price:</b> <span id="priceF"></span> USDX</p>
+        <span id="price" style="display:none;"></span>
 
         <div class="form-div">
           <label for="secretPhrase">BLX Account Passphrase<span class="star"> *</span></label><br/>
@@ -109,8 +110,9 @@
       const seller = value.account
       document.getElementById('seller').innerText = seller
       const price = parseFloat(value.p).toFixed(2)
+      document.getElementById('price').innerText = price
       const priceF = Number(price).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
-      document.getElementById('price').innerText = priceF
+      document.getElementById('priceF').innerText = priceF
       const location = value.l
       const city = getCityName(location)
       document.getElementById('location').innerText = city

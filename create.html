@@ -13,8 +13,9 @@
     <link rel="stylesheet" href="style.css" />
     <title>Blue0x Marketplace</title>
     <style>
-      #img2, #img3 {
-        margin-bottom: 16px;
+      #uploadImg2, #uploadImg3, #uploadImg4 {
+        width: 95px;
+        height: 95px;
       }
     </style>
   </head>
@@ -80,8 +81,11 @@
         <p><span class="star">* </span> Required field</p>
 
         <div class="form-div">
-          <label for="mainImg">Main Image<span class="star"> *</span></label><br/>
-          <input type="text" autocomplete="rando" id="mainImg" placeholder="https://imgur.com/EbBWRSPW67.png">
+          <label>Main Image<span class="star"> *</span></label><br/>
+          <label for="image1">
+            <input type="file" id="image1" accept="image/*" onchange="upload(1)" style="display:none;" required>
+            <img class="upload-image-card" id="uploadImg1" src="img/no-image.png">
+          </label>
         </div>
 
         <div class="form-div">
@@ -95,10 +99,23 @@
         </div>
 
         <div class="form-div">
-          <label for="img2">Links to Additional Images</label><br/>
-          <input type="text" autocomplete="rando" id="img2" placeholder="https://imgur.com/EbBWRSPW67.png">
-          <input type="text" autocomplete="rando" id="img3" placeholder="https://imgur.com/EbBWRSPW67.png">
-          <input type="text" autocomplete="rando" id="img4" placeholder="https://imgur.com/EbBWRSPW67.png">
+          <label>Additional Images</label><br/>
+
+          <label for="image2">
+            <input type="file" id="image2" accept="image/*" onchange="upload(2)" style="display:none;">
+            <img class="upload-image-card" id="uploadImg2" src="img/addImg.png">
+          </label>
+
+          <label for="image3">
+            <input type="file" id="image3" accept="image/*" onchange="upload(3)" style="display:none;">
+            <img class="upload-image-card" id="uploadImg3" src="img/addImg.png">
+          </label>
+
+          <label for="image4">
+            <input type="file" id="image4" accept="image/*" onchange="upload(4)" style="display:none;">
+            <img class="upload-image-card" id="uploadImg4" src="img/addImg.png">
+          </label>
+
         </div>
 
         <div class="form-div">
@@ -568,16 +585,58 @@
 <script src="./scripts.js"></script>
 <script src="./constants.js"></script>
 <script>
+  function upload(number) {
+    const file = document.getElementById('image' + number).files[0]
+    var form = new FormData()
+    form.append("image", file)
+
+  var settings = {
+    "url": "https://api.imgbb.com/1/upload?expiration=691200&key=99a0f98b7c8f1c2d8233f5df391f2732",
+    "method": "POST",
+    "timeout": 0,
+    "processData": false,
+    "mimeType": "multipart/form-data",
+    "contentType": false,
+    "data": form
+  }
+
+$.ajax(settings).done(function (response) {
+  var jx = JSON.parse(response)
+  const url = jx.data.url
+  document.getElementById('uploadImg' + number).src = url
+  const div = document.getElementById('uploadImg' + number).src
+  console.log(div)
+})}
+</script>
+<script>
 const form = document.getElementById("form");
 form.addEventListener("submit", submitForm);
 function submitForm(e) {
   e.preventDefault()
   document.getElementById("loading").style.display = "flex"
   const time = Math.floor(Date.now())
-  const mainImg = document.getElementById('mainImg').value
-  const img2 = document.getElementById('img2').value
-  const img3 = document.getElementById('img3').value
-  const img4 = document.getElementById('img4').value
+  const mainImg = document.getElementById('uploadImg1').src
+  var img2
+  var img3
+  var img4
+  const i2 = document.getElementById('uploadImg2').src
+  if (i2 == 'img/addImg.png') {
+    img2 = ''
+  } else {
+    img2 = i2
+  }
+  const i3 = document.getElementById('uploadImg3').src
+  if (i3.includes('img/addImg.png')) {
+    img3 = ''
+  } else {
+    img3 = i3
+  }
+  const i4 = document.getElementById('uploadImg4').src
+  if (i4 == 'img/addImg.png') {
+    img4 = ''
+  } else {
+    img4 = i4
+  }
   const title  = document.getElementById('title').value
   const location =document.getElementById('location').value
   const category  = document.getElementById('category').value
@@ -615,5 +674,5 @@ function twoDecimals(e, field) {
           field.value = "";  
 }}} 
 </script>
-  </body>
+</body>
 </html>

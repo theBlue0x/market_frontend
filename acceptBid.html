@@ -89,12 +89,13 @@
           <label>Location:</label>
           <span id="location"></span><br/>
           <label>Bid Price:</label>
-           <span id="price"></span> <span id="currency"></span><br/>
+           <span id="priceF"></span> <span id="currency"></span><br/>
           <label>Balance Verified:</label> <span id="balanceVerified" style="color:red">No</span><br/>
           <label>Deadline:</label>
           <span id="date"></span><br/>
           <label>Fee:</label> <span>1.01 BLX</span>
           <span id="seller" style="display:none;"></span>
+          <span id="price" style="display:none;"></span>
           <span id="d" style="display:none;"></span>
           <span id="n" style="display:none;"></span>
           <span id="f" style="display:none;"></span>
@@ -126,9 +127,6 @@
     if (key == item) {
       const title = value.t
       document.getElementById('item-name').innerText = title
-      const price = parseFloat(value.p).toFixed(2)
-      const priceF = Number(price).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
-      document.getElementById('price').innerText = priceF
       const location = value.l
       const city = getCityName(location)
       document.getElementById('location').innerText = city
@@ -155,7 +153,8 @@ $.getJSON(Constants.goodsBidsAPI, function(data) {
       document.getElementById('n').innerText = n
       document.getElementById('f').innerText = f
       document.getElementById('buyer').innerText = buyer
-      document.getElementById('price').innerText = Number(price).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
+      document.getElementById('price').innerText = price
+      document.getElementById('priceF').innerText = Number(price).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
       document.getElementById('currency').innerText = currency
       $.getJSON(Constants.apiUrl,{
         requestType: "getAccount",
