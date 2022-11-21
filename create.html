@@ -32,12 +32,12 @@
         <div class="navbar-nav-right">
           <div class="navbar-search-bar">
             <span class="material-icons md-24">search</span>
-            <input id="search" class="search-bar" type="text" placeholder=" Search items and accounts" />
+            <input id="search" class="search-bar" type="text" enterkeyhint="go" placeholder=" Search items and accounts" />
           </div>
           <div class="navbar-items" id="menu">
             <div class="navbar-search-bar-hidden menuItem">
               <span class="material-icons md-24">search</span>
-              <input id="search1" class="search-bar" type="text" placeholder=" Search items and accounts"/>
+              <input id="search1" class="search-bar" type="text" enterkeyhint="go" placeholder=" Search items and accounts"/>
             </div>
             <ul>
               <li>
@@ -620,7 +620,7 @@ function submitForm(e) {
   var img3
   var img4
   const i2 = document.getElementById('uploadImg2').src
-  if (i2 == 'img/addImg.png') {
+  if (i2.includes('img/addImg.png')) {
     img2 = ''
   } else {
     img2 = i2
@@ -632,7 +632,7 @@ function submitForm(e) {
     img3 = i3
   }
   const i4 = document.getElementById('uploadImg4').src
-  if (i4 == 'img/addImg.png') {
+  if (i4.includes('img/addImg.png')) {
     img4 = ''
   } else {
     img4 = i4
