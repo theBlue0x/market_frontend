@@ -191,7 +191,7 @@ button.wallet {
 
 .heading {
   font-size: 2.15rem;
-  color: #24292f;
+  color: #000;
   margin-bottom: 1rem;
 }
 
@@ -1129,7 +1129,7 @@ tbody td {
   .navbar {
     height: 4.5rem;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
   }
 
   span.material-icons-outlined.nav-icon {
@@ -1142,7 +1142,7 @@ tbody td {
   }
 
   .heading {
-    font-size: 1.5rem;
+    font-size: 1.85rem;
     align-self: center;
   }
 
@@ -1178,18 +1178,6 @@ tbody td {
 
   .history-card {
     width: 90%;
-  }
-
-  .section-1 {
-    flex-direction: column;
-    text-align: center;
-    padding: 0vw 5vw 8vw 6vw;
-    margin-top: 10vh;
-  }
-
-  .heading-container {
-    display: flex;
-    align-items: center;
   }
 }
 
