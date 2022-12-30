@@ -409,7 +409,7 @@ var cities = {
 "wau":  " Wausau, Wisconsin ",
 "wyo":  " Cheyenne, Wyoming"
 }
-var city = (cities[name]);
+var city = (cities[name])
 return city
 }
 
